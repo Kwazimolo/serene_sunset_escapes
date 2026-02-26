@@ -63,8 +63,8 @@ header.scrolled nav a.active{color:var(--ink)}
 .nav-cta:hover{background:var(--gold-dk) !important;transform:translateY(-1px)}
 
 /* BOOK MODAL */
-.book-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-.book-modal-overlay.open{display:flex}
+.book-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.book-modal-overlay.open{display:flex!important}
 .book-modal{background:#fff;border-radius:20px;padding:2.5rem;max-width:420px;width:90%;box-shadow:var(--elev3);text-align:center;animation:modalIn .25s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .book-modal h3{font-size:1.5rem;margin-bottom:.4rem}
@@ -131,7 +131,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 @media(max-width:768px){
   .footer-top{grid-template-columns:1fr}
   .room-hero{height:50vh}
-  nav a:not(.nav-cta){display:none}
+  
 }
 
 .svc-section{padding:5.5rem 5vw}
@@ -147,7 +147,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 .svc-text p{color:var(--mid);font-size:.95rem;line-height:1.85;margin-bottom:1.5rem}
 
 .why-strip{background:var(--ink);padding:5rem 5vw;position:relative;overflow:hidden}
-.why-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.why-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.15}
 .why-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
 .why-inner h2{color:#fff;margin-bottom:.75rem}
 .why-inner .lead{color:rgba(255,255,255,.4);margin-bottom:3rem}
@@ -165,7 +165,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 }
 
 /* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
+.hamburger{display:none!important;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
 .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 header.scrolled .hamburger span{background:var(--ink)}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -173,7 +173,7 @@ header.scrolled .hamburger span{background:var(--ink)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* MOBILE MENU DRAWER */
-.mobile-menu{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mobile-menu{position:fixed;inset:0;z-index:450;pointer-events:none}
 .mobile-menu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;backdrop-filter:blur(4px)}
 .mobile-menu-panel{position:absolute;top:0;right:0;width:min(320px,85vw);height:100%;background:#fff;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
 .mobile-menu.open{pointer-events:all}
@@ -191,7 +191,7 @@ header.scrolled .hamburger span{background:var(--ink)}
 .mobile-menu-cta button:hover{background:var(--gold-dk)}
 
 @media(max-width:768px){
-  .hamburger{display:flex}
+  .hamburger{display:flex!important}
   nav a,.nav-cta{display:none!important}
   .footer-top{grid-template-columns:1fr}
   .room-hero{height:50vh}

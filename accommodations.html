@@ -63,8 +63,8 @@ header.scrolled nav a.active{color:var(--ink)}
 .nav-cta:hover{background:var(--gold-dk) !important;transform:translateY(-1px)}
 
 /* BOOK MODAL */
-.book-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-.book-modal-overlay.open{display:flex}
+.book-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.book-modal-overlay.open{display:flex!important}
 .book-modal{background:#fff;border-radius:20px;padding:2.5rem;max-width:420px;width:90%;box-shadow:var(--elev3);text-align:center;animation:modalIn .25s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .book-modal h3{font-size:1.5rem;margin-bottom:.4rem}
@@ -131,7 +131,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 @media(max-width:768px){
   .footer-top{grid-template-columns:1fr}
   .room-hero{height:50vh}
-  nav a:not(.nav-cta){display:none}
+  
 }
 
 .room-split{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
@@ -184,7 +184,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 @media(max-width:500px){.amenities-grid{grid-template-columns:1fr}}
 
 /* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
+.hamburger{display:none!important;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
 .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 header.scrolled .hamburger span{background:var(--ink)}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -192,7 +192,7 @@ header.scrolled .hamburger span{background:var(--ink)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* MOBILE MENU DRAWER */
-.mobile-menu{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mobile-menu{position:fixed;inset:0;z-index:450;pointer-events:none}
 .mobile-menu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;backdrop-filter:blur(4px)}
 .mobile-menu-panel{position:absolute;top:0;right:0;width:min(320px,85vw);height:100%;background:#fff;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
 .mobile-menu.open{pointer-events:all}
@@ -210,7 +210,7 @@ header.scrolled .hamburger span{background:var(--ink)}
 .mobile-menu-cta button:hover{background:var(--gold-dk)}
 
 @media(max-width:768px){
-  .hamburger{display:flex}
+  .hamburger{display:flex!important}
   nav a,.nav-cta{display:none!important}
   .footer-top{grid-template-columns:1fr}
   .room-hero{height:50vh}
@@ -236,6 +236,7 @@ header.scrolled .hamburger span{background:var(--ink)}
 }
 
 @media(max-width:768px){
+  .services-flow-grid{grid-template-columns:1fr!important}
   .room-split,.room-split.flip{grid-template-columns:1fr;direction:ltr}
   .room-img{height:280px}
   .bath-trio{grid-template-columns:1fr}
@@ -433,6 +434,26 @@ header.scrolled .hamburger span{background:var(--ink)}
         <li>Washer &amp; dryer</li><li>Automated guest entrance</li>
         <li>Security cameras on premises</li><li>24/7 guest support</li>
       </ul></div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--cream-2);padding:5.5rem 5vw;border-top:1px solid var(--border)">
+  <div class="services-flow-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
+    <div>
+      <span class="label">There's more</span>
+      <h2 style="margin-bottom:1rem">Make it truly yours</h2>
+      <p class="lead" style="margin-bottom:2rem">The space is set. Now personalise your stay — fresh Caribbean breakfast at your door, a private driver, a personal chef, or an in-villa massage. Everything arranged so you never have to think about it.</p>
+      <a href="services.html" class="btn btn-gold">Explore Our Services →</a>
+    </div>
+    <div style="position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--elev2)">
+      <img src="media/images/serene-sunset-escapes-balcony-caribbean-sea-view.jpg"
+           alt="Private balcony at Serene Sunset Escapes Saint Lucia — where every morning starts perfectly"
+           style="width:100%;height:360px;object-fit:cover;display:block"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,12,8,.5) 0%,transparent 60%)"></div>
+      <div style="position:absolute;bottom:1.5rem;left:1.5rem">
+        <span style="font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)">Your mornings could look like this</span>
+      </div>
     </div>
   </div>
 </div>
