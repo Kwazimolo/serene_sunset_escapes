@@ -182,13 +182,101 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
   .amenities-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:500px){.amenities-grid{grid-template-columns:1fr}}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+header.scrolled .hamburger span{background:var(--ink)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU DRAWER */
+.mobile-menu{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mobile-menu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;backdrop-filter:blur(4px)}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:min(320px,85vw);height:100%;background:#fff;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.mobile-menu.open{pointer-events:all}
+.mobile-menu.open .mobile-menu-overlay{opacity:1}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-header{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu-header .logo{color:var(--ink);font-size:1rem;text-shadow:none}
+.mobile-menu-close{background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--mid);padding:.25rem;line-height:1}
+.mobile-nav{display:flex;flex-direction:column;padding:1rem 0;flex:1}
+.mobile-nav a{padding:1rem 1.5rem;font-size:1rem;color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border);transition:.15s;display:flex;justify-content:space-between;align-items:center}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--gold);background:var(--cream)}
+.mobile-nav a::after{content:'→';color:var(--dim);font-size:.85rem}
+.mobile-menu-cta{padding:1.5rem}
+.mobile-menu-cta button{width:100%;padding:14px;border-radius:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.mobile-menu-cta button:hover{background:var(--gold-dk)}
+
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav a,.nav-cta{display:none!important}
+  .footer-top{grid-template-columns:1fr}
+  .room-hero{height:50vh}
+  h1{font-size:clamp(2rem,8vw,2.8rem)}
+  h2{font-size:clamp(1.4rem,5vw,2rem)}
+  .hero-content{padding:0 5vw 4rem}
+  .hero-sub{font-size:.95rem}
+}
+
+@media(max-width:600px){
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-top:1px solid var(--border)}
+  .stat{padding:1.5rem 1rem}
+  .stat-val{font-size:1.8rem}
+  .feat-text{padding:3rem 5vw}
+  .photo-moment{height:50vh}
+  .photo-moment-text{padding:2rem 5vw}
+  .photo-moment-text h2{font-size:1.4rem}
+  .cta-strip{padding:4rem 5vw}
+  .footer-inner{padding:3rem 5vw 2rem}
+  .book-modal{padding:1.75rem}
+}
+
+@media(max-width:768px){
+  .room-split,.room-split.flip{grid-template-columns:1fr;direction:ltr}
+  .room-img{height:280px}
+  .bath-trio{grid-template-columns:1fr}
+  .bath-card:nth-child(2){border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .kitchen-inner{grid-template-columns:1fr}
+  .kitchen-inner img{height:260px}
+  .amenities-grid{grid-template-columns:1fr 1fr}
+  .room-text{padding:2.5rem 5vw}
+  .k-list{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  .amenities-grid{grid-template-columns:1fr}
+  .chips{gap:.35rem}
+}
 </style>
 </head>
 <body>
 <header id="hdr">
   <a href="index.html" class="logo">Serene Sunset Escapes</a>
   <nav><a href="index.html">Home</a><a href="accommodations.html" class="active">Accommodations</a><a href="services.html">Services</a><a href="contact.html">Contact</a><button data-book="true" class="nav-cta">Book Now</button></nav>
+<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-header">
+      <a href="index.html" class="logo" onclick="closeMobileMenu()">Serene Sunset Escapes</a>
+      <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-nav">
+      <a href="index.html"  onclick="closeMobileMenu()">Home</a>
+      <a href="accommodations.html" class="active" onclick="closeMobileMenu()">Accommodations</a>
+      <a href="services.html"  onclick="closeMobileMenu()">Services</a>
+      <a href="contact.html"  onclick="closeMobileMenu()">Contact</a>
+    </nav>
+    <div class="mobile-menu-cta">
+      <button data-book="true" onclick="closeMobileMenu()">Book Now</button>
+    </div>
+  </div>
+</div>
 
 <div class="book-modal-overlay" id="bookModal" onclick="if(event.target===this)closeBook()">
   <div class="book-modal">
@@ -379,7 +467,8 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
-        <a href="tel:+17587267628">+1 758 726 7628</a>
+        <a href="tel:+17587250390">+1 758 725 0390</a>
+        <a href="/cdn-cgi/l/email-protection#94fdfaf2fbd4e7f1e6f1faf1e7e1fae7f1e0f1e7f7f5e4f1e7baf7fbf9"><span class="__cf_email__" data-cfemail="2b42454d446b584e594e454e585e45584e5f4e58484a5b4e5805484446">[email&#160;protected]</span></a>
         <p>Sunny Acres, Castries, Saint Lucia</p>
         <a href="https://www.google.com/maps/place/Serene+Sunset+Escape/@14.0278114,-60.978692,956m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ca9e6b642a13b53:0x6bf48a4fe6fa9fe7!8m2!3d14.0278114!4d-60.9761171!16s%2Fg%2F11xlp5wvxh" target="_blank" rel="noopener" style="margin-top:.35rem">View on Google Maps →</a>
       </div>
@@ -407,6 +496,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function toggleMobileMenu(){
+  var m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');
+  var isOpen=m.classList.contains('open');
+  if(isOpen){closeMobileMenu()}else{m.classList.add('open');h.classList.add('open');document.body.style.overflow='hidden'}
+}
+function closeMobileMenu(){
+  var m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');
+  m.classList.remove('open');h.classList.remove('open');
+  if(!document.getElementById('bookModal').classList.contains('open')){document.body.style.overflow=''}
+}
 function openBook() {
   var m = document.getElementById('bookModal');
   if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }

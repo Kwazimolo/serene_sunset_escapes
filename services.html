@@ -147,7 +147,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
 .svc-text p{color:var(--mid);font-size:.95rem;line-height:1.85;margin-bottom:1.5rem}
 
 .why-strip{background:var(--ink);padding:5rem 5vw;position:relative;overflow:hidden}
-.why-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+.why-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
 .why-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
 .why-inner h2{color:#fff;margin-bottom:.75rem}
 .why-inner .lead{color:rgba(255,255,255,.4);margin-bottom:3rem}
@@ -163,13 +163,95 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
   .svc-img img{height:280px}
   .why-grid{grid-template-columns:1fr 1fr}
 }
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:.2s;z-index:400;position:relative}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+header.scrolled .hamburger span{background:var(--ink)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU DRAWER */
+.mobile-menu{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mobile-menu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;backdrop-filter:blur(4px)}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:min(320px,85vw);height:100%;background:#fff;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.mobile-menu.open{pointer-events:all}
+.mobile-menu.open .mobile-menu-overlay{opacity:1}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-header{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu-header .logo{color:var(--ink);font-size:1rem;text-shadow:none}
+.mobile-menu-close{background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--mid);padding:.25rem;line-height:1}
+.mobile-nav{display:flex;flex-direction:column;padding:1rem 0;flex:1}
+.mobile-nav a{padding:1rem 1.5rem;font-size:1rem;color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border);transition:.15s;display:flex;justify-content:space-between;align-items:center}
+.mobile-nav a:hover,.mobile-nav a.active{color:var(--gold);background:var(--cream)}
+.mobile-nav a::after{content:'→';color:var(--dim);font-size:.85rem}
+.mobile-menu-cta{padding:1.5rem}
+.mobile-menu-cta button{width:100%;padding:14px;border-radius:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.mobile-menu-cta button:hover{background:var(--gold-dk)}
+
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav a,.nav-cta{display:none!important}
+  .footer-top{grid-template-columns:1fr}
+  .room-hero{height:50vh}
+  h1{font-size:clamp(2rem,8vw,2.8rem)}
+  h2{font-size:clamp(1.4rem,5vw,2rem)}
+  .hero-content{padding:0 5vw 4rem}
+  .hero-sub{font-size:.95rem}
+}
+
+@media(max-width:600px){
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-top:1px solid var(--border)}
+  .stat{padding:1.5rem 1rem}
+  .stat-val{font-size:1.8rem}
+  .feat-text{padding:3rem 5vw}
+  .photo-moment{height:50vh}
+  .photo-moment-text{padding:2rem 5vw}
+  .photo-moment-text h2{font-size:1.4rem}
+  .cta-strip{padding:4rem 5vw}
+  .footer-inner{padding:3rem 5vw 2rem}
+  .book-modal{padding:1.75rem}
+}
+
+@media(max-width:768px){
+  .svc-inner,.svc-inner.flip{grid-template-columns:1fr;direction:ltr}
+  .svc-img img{height:260px}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .svc-section{padding:3.5rem 5vw}
+}
+@media(max-width:500px){
+  .why-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <header id="hdr">
   <a href="index.html" class="logo">Serene Sunset Escapes</a>
   <nav><a href="index.html">Home</a><a href="accommodations.html">Accommodations</a><a href="services.html" class="active">Services</a><a href="contact.html">Contact</a><button data-book="true" class="nav-cta">Book Now</button></nav>
+<button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-header">
+      <a href="index.html" class="logo" onclick="closeMobileMenu()">Serene Sunset Escapes</a>
+      <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-nav">
+      <a href="index.html"  onclick="closeMobileMenu()">Home</a>
+      <a href="accommodations.html"  onclick="closeMobileMenu()">Accommodations</a>
+      <a href="services.html" class="active" onclick="closeMobileMenu()">Services</a>
+      <a href="contact.html"  onclick="closeMobileMenu()">Contact</a>
+    </nav>
+    <div class="mobile-menu-cta">
+      <button data-book="true" onclick="closeMobileMenu()">Book Now</button>
+    </div>
+  </div>
+</div>
 
 <div class="book-modal-overlay" id="bookModal" onclick="if(event.target===this)closeBook()">
   <div class="book-modal">
@@ -208,7 +290,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       <span class="label">Morning Service</span>
       <h2>Fresh Breakfast, Delivered</h2>
       <p>Start your Caribbean morning with freshly prepared local food delivered to your door — think tropical fruit platters, bakes, saltfish, fried plantain, and fresh juice. Everything made to order, tailored to what you want.</p>
-      <button data-tally-open="0QE8JN" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Enquire about breakfast →</button>
+      <button data-tally-open="0QE8JN" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Enquire about breakfast →</button>
     </div>
   </div>
 </div>
@@ -221,7 +303,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       <span class="label">Transport</span>
       <h2>Private Island Transfers</h2>
       <p>We arrange trusted local drivers in private vehicles — no minibuses, no sharing. Airport pickups, beach trips, Piton tours, restaurant runs. Just tell us where and when.</p>
-      <button data-tally-open="0QE8JN" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Arrange transport →</button>
+      <button data-tally-open="0QE8JN" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Arrange transport →</button>
     </div>
   </div>
 </div>
@@ -234,7 +316,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       <span class="label">Dining</span>
       <h2>Personal Chef</h2>
       <p>Have a private chef come to the villa and prepare a meal entirely for you. Caribbean cuisine, international dishes, or something tailored to your group — discuss preferences when you book.</p>
-      <button data-tally-open="0QE8JN" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Request a chef →</button>
+      <button data-tally-open="0QE8JN" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Request a chef →</button>
     </div>
   </div>
 </div>
@@ -247,7 +329,7 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       <span class="label">Wellness</span>
       <h2>In-Villa Massage</h2>
       <p>A professional therapist comes directly to the villa. Arrange it for your arrival day, a lazy afternoon, or a special occasion. The perfect way to properly unwind.</p>
-      <button data-tally-open="0QE8JN" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Book a massage →</button>
+      <button data-tally-open="0QE8JN" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-overlay="1" data-tally-width="480" class="btn btn-outline" style="cursor:pointer;border:1.5px solid var(--border)">Book a massage →</button>
     </div>
   </div>
 </div>
@@ -297,7 +379,8 @@ footer{background:#111008;padding:5rem 5vw 2.5rem}
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
-        <a href="tel:+17587267628">+1 758 726 7628</a>
+        <a href="tel:+17587250390">+1 758 725 0390</a>
+        <a href="/cdn-cgi/l/email-protection#71181f171e31021403141f1402041f021405140212100114025f121e1c"><span class="__cf_email__" data-cfemail="523b3c343d12213720373c3721273c213726372131332237217c313d3f">[email&#160;protected]</span></a>
         <p>Sunny Acres, Castries, Saint Lucia</p>
         <a href="https://www.google.com/maps/place/Serene+Sunset+Escape/@14.0278114,-60.978692,956m/data=!3m2!1e3!4b1!4m6!3m5!1s0x6ca9e6b642a13b53:0x6bf48a4fe6fa9fe7!8m2!3d14.0278114!4d-60.9761171!16s%2Fg%2F11xlp5wvxh" target="_blank" rel="noopener" style="margin-top:.35rem">View on Google Maps →</a>
       </div>
@@ -325,6 +408,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function toggleMobileMenu(){
+  var m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');
+  var isOpen=m.classList.contains('open');
+  if(isOpen){closeMobileMenu()}else{m.classList.add('open');h.classList.add('open');document.body.style.overflow='hidden'}
+}
+function closeMobileMenu(){
+  var m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');
+  m.classList.remove('open');h.classList.remove('open');
+  if(!document.getElementById('bookModal').classList.contains('open')){document.body.style.overflow=''}
+}
 function openBook() {
   var m = document.getElementById('bookModal');
   if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
