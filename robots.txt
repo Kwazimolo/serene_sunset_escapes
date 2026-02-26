@@ -1,8 +1,9 @@
-# Serene Sunset Escapes — robots.txt
-
 User-agent: *
 Allow: /
-Sitemap: https://www.serenesunsetescapes.com/sitemap.xml
+Disallow: /search/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cgi-bin/
 
 # Allow all major search engines
 User-agent: Googlebot
@@ -42,6 +43,7 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
-# Disallow admin/private paths (none currently but good practice)
-Disallow: /admin/
-Disallow: /private/
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.serenesunsetescapes.com/sitemap.xml
