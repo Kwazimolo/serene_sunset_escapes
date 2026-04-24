@@ -8,12 +8,12 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.serenesunsetescapes.com/https://assets.serenesunsetescapes.com/images/serene-sunset-escapes-saint-lucia-aerial-view.jpg</image:loc>
+      <image:loc>https://assets.serenesunsetescapes.com/assets/images/serene-sunset-escapes-saint-lucia-aerial-view.jpg</image:loc>
       <image:title>Panoramic aerial view — Serene Sunset Escapes, Saint Lucia</image:title>
       <image:caption>Stunning panoramic aerial view of Castries and the Caribbean Sea from Serene Sunset Escapes vacation rental in Saint Lucia</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://www.serenesunsetescapes.com/https://assets.serenesunsetescapes.com/images/serene-sunset-escapes-balcony-caribbean-view.jpg</image:loc>
+      <image:loc>https://assets.serenesunsetescapes.com/assets/images/serene-sunset-escapes-balcony-caribbean-view.jpg</image:loc>
       <image:title>Private balcony with Caribbean sea view — Serene Sunset Escapes Saint Lucia</image:title>
     </image:image>
   </url>
@@ -24,11 +24,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.serenesunsetescapes.com/https://assets.serenesunsetescapes.com/images/serene-sunset-escapes-master-bedroom-ocean-view.jpg</image:loc>
+      <image:loc>https://assets.serenesunsetescapes.com/assets/images/serene-sunset-escapes-master-bedroom-ocean-view.jpg</image:loc>
       <image:title>Master bedroom with ocean view — Serene Sunset Escapes Saint Lucia</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.serenesunsetescapes.com/https://assets.serenesunsetescapes.com/images/serene-sunset-escapes-kitchen-open-plan.jpg</image:loc>
+      <image:loc>https://assets.serenesunsetescapes.com/assets/images/serene-sunset-escapes-kitchen-open-plan.jpg</image:loc>
       <image:title>Fully equipped kitchen — Serene Sunset Escapes Saint Lucia vacation rental</image:title>
     </image:image>
   </url>
